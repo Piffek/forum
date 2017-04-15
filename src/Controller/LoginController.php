@@ -3,7 +3,9 @@
 namespace Piwko\Forum\Controller;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\User;
 
 class LoginController
 {
@@ -14,6 +16,11 @@ class LoginController
      */
     public function authenticate(Request $request)
     {
+    	Validator::make($request->all(), [
+    			'email' => 'required|email|max:255',
+    			'password' => 'required|min:6',
+    	]);
+    	
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return Auth::user()->id;
             return redirect()->intended('dashboard');
@@ -23,8 +30,29 @@ class LoginController
         }
     }
     
+    public function register(Request $request)
+    {
+    	Validator::make($request->all(), [
+    			'name' => 'required|max:255',
+    			'email' => 'required|email|max:255|unique:users',
+    			'password' => 'required|min:6',
+    	]);
+    	
+    	User::create([
+    		'name' => $request->name,
+    		'email' => $request->email,
+    		'password' => bcrypt($request->password),
+    	]);
+    	
+    }
+    
+    public function showRegisterForm()
+    {
+    	return view('view::auth.register');
+    }
+    
     public function index()
     {
-    	return view('view::login');
+    	return view('view::auth.login');
     }
 }
