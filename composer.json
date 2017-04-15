@@ -1,0 +1,7 @@
+{	
+	"name" : "piwko/forum",
+	"description" : "Forum Package By Piwko Patryk",
+	"type" : "laravel",
+	"license" : "MIT",
+	"minimum-stability" : "dev"
+}
