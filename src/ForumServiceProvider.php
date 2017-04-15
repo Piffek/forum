@@ -19,8 +19,10 @@ class ForumServiceProvider extends ServiceProvider
 	
     public function boot()
     {
+    	$this->app['router']->group(['namespace' => 'Piwko\Forum\Controller'], function () {
     		$this->loadRoutesFrom($this->baseDir().'routes/web.php');
- 
+    		$this->loadViewsFrom($this->baseDir().'view', 'view');
+    	});
     }
 
     /**
