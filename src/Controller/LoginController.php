@@ -2,10 +2,10 @@
 
 namespace Piwko\Forum\Controller;
 
+use Piwko\Forum\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
-use App\User;
 
 class LoginController
 {
@@ -22,7 +22,6 @@ class LoginController
     	]);
     	
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return Auth::user()->id;
             return redirect()->intended('dashboard');
         }else
         {

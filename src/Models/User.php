@@ -1,12 +1,13 @@
 <?php
 
-namespace Piwko\Forum;
+namespace Piwko\Forum\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 
-class Profile extends Model
+
+class User extends Model
 {
 
     /**
@@ -15,7 +16,7 @@ class Profile extends Model
      * @var array
      */
     protected $fillable = [
-        'id','city','user_id', 'updated_at', 'created_at'
+        'name', 'email', 'password',
     ];
     
 }

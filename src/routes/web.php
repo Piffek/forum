@@ -1,13 +1,14 @@
 <?php
 
+
 Route::group(['middleware' => ['web']], function () {
-	Route::get('/cosiek', function(){
-		dd(Auth::user());
-	
-	});
-	
-	Route::get('/login', 'LoginController@index');
-	Route::get('/registration','LoginController@showRegisterForm');
-	Route::post('/registration',['as'=>'register','uses'=>'LoginController@register']);
-	Route::post('/post/login', ['as'=>'login','uses'=>'LoginController@authenticate']);
+Route::get('/login', 'LoginController@index');
+Route::get('/registration','LoginController@showRegisterForm')->name('registration');
+Route::post('/registration', 'LoginController@register')->name('register');
+Route::post('/post/login', 'LoginController@authenticate')->name('login');
+
+Route::get('/', 'HomeController@index')->name('homePage');
+
+Route::get('/subjectForm', 'SubjectController@index')->name('subjectSubject');
+Route::post('/addSubject', 'SubjectController@add')->name('addSubject');
 });

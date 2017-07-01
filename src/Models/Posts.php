@@ -1,7 +1,6 @@
 <?php
 
-namespace Piwko\Forum;
-use DB;
+namespace Piwko\Forum\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
